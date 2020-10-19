@@ -1,0 +1,20 @@
+<html>
+	<body>
+		<canvas id="canvas" width="800px" height="600px"></canvas>
+		<script src="./gear.js"></script>
+		<script>
+gear = new GearAnimation('canvas');
+gear.add(420, 200, 4, 50, 0, -1, 6, 0.32);
+gear.add(420, 200, 3.7, 25, 0, -0.5, 4, 0.24);
+
+gear.add(200, 200, 4, 35, 0, 1, 5, 0.3);
+gear.add(28, 138, 4, 35, 1, -1, 7, 0.2);
+
+gear.add(264, 476, 3.7, 46, 4.45, -0.5, 4, 0.22);
+gear.add(319, 296, 3.7, 32, 4.45, 0.5, 3, 0.22);
+gear.add(580, 270, 3.7, 48, 4.45, 0.5, 7, 0.3);
+gear.add(753, 169, 3.7, 35, 1.01, -0.5, 3, 0.18);
+gear.draw();
+		</script>
+	</body>
+</html>
