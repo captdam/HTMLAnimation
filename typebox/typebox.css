@@ -1,0 +1,1 @@
+.typebox:after{content:'_';animation:blinker 0.25s step-start infinite;}@keyframes blinker{50%{opacity:0}}

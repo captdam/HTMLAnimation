@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Typebox demo</title>
+		<script src="typebox.js"></script>
+		<link href="typebox.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="typebox" id="box1"></div>
+		<div class="typebox" id="box2"></div>
+		<!--typebox(dom, list_of_text_to_type, type_speed, delay_next_text)-->
+		<script>typebox(document.getElementById('box1'), ['PHP', 'HTML', 'CSS', 'JavaScript', 'SQL', 'C', 'C++', 'Java', 'C#', 'Python', 'Pascal', 'GLSL'], 500, 2);</script>
+		<script>typebox(document.getElementById('box2'), ['CPU', 'GPU', 'PCIe', 'SATA', 'I2C', 'AXI', 'RAM', 'ROM', 'Thunderbolt', 'CD ROM', 'EEPROM', 'BIOS']);</script>
+	</body>
+
+<style>
+	body {
+		background-color: black;
+		color: white;
+	}
+	body>*{
+		margin: 20px;
+		padding: 20px;
+	}
+	.typebox{
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 26px;
+	}
+	.typebox:before{
+		content: '$ ';
+	}
+</style>
