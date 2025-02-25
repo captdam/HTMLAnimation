@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>StackSim</title>
+		<script src="stacksim.js"></script>
+	</head>
+	<body><div id="mydiv"></div><button onclick="myStack.reset(event)">Reset</button><button onclick="myStack.index(event)">Index</button></body>
+	<script>
+class AVRStack extends StackSim { // You can define some custom functions to be used
+	push(data) {
+		this.mem_write(this.sp--, data); // SP points to next ready-to-write address and grows downwards: write to current pos, then decrease
+	}
+	pop() {
+		this.sp++;
+	}
+}
+
+let myStack = new AVRStack(document.getElementById('mydiv'), 0, 7, [
+	['0x0010', 'add r0, r0', () => {}],
+	['0x0011', 'push r0', () => {myStack.push('Value of R0');}],
+	['0x0012', 'push r1', () => {myStack.push('Value of R1');}],
+	['0x0013', 'call routine', () => {}],
+	['0x0014', '     @0x0017', () => {myStack.push('Return address 0x0015');myStack.push('Return address 0x0015');myStack.pc=7;}],
+	['0x0015', 'add r0, r1', () => {}],
+	['0x0016', 'stop', () => {myStack.pc--;}],
+	['0x0017', 'routine: add r0, r0', () => {}],
+	['0x0018', 'push r0', () => {myStack.push('Content of R0')}],
+	['0x0019', 'pop r16', () => {myStack.pop()}],
+	['0x001A', 'ret', () => {myStack.pop();myStack.pop();myStack.pc=5;}],
+	['0x001B', '...', () => {}]
+], [
+	['0xC0', '00'],
+	['0xC1', '00'],
+	['0xC2', '00'],
+	['0xC3', '00'],
+	['0xC4', '00'],
+	['0xC5', '00'],
+	['0xC6', '00'],
+	['0xC7', '00']
+]);
+myStack.reset();
+	</script>
+	<style>
+#mydiv>div {
+	display: inline-block;
+	border: solid 1px black;
+	vertical-align: top;
+	margin: 5px;
+}
+#mydiv>div>div {
+	display: grid;
+	grid-template-columns: 10ch 40ch;
+}#mydiv>div>div:nth-of-type(2n) {
+	background: #BBB;
+}
+#mydiv>div>div:nth-of-type(2n+1) {
+	background: #DDD;
+}
+	</style>
+</html>
